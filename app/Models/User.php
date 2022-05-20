@@ -12,11 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function perfil()
-    {
-        return $this->hasOne(Perfil::class);
-    }
-
     public function adocoes()
     {
         return $this->hasMany(Adocao::class);
@@ -44,6 +39,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'sobrenome',
+        'cidade',
+        'estado',
         'email',
         'password',
     ];
