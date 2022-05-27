@@ -13,7 +13,7 @@ class StoreAnimalRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +24,17 @@ class StoreAnimalRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome' => ['required', 'string', 'max:255'],
+            'tipo' => ['required', 'string', 'max:255', 'in:gato, cachorro'],
+            'descricao' => ['required', 'string', 'max:255'],
+            'raca' => ['string', 'max:255'],
+            'idade' => ['integer'],
+            'rua' => ['required', 'string', 'max:255'],
+            'numero' => ['required', 'string', 'max:255'],
+            'bairro' => ['required', 'string', 'max:255'],
+            'complemento' => ['string', 'max:255'],
+            'cidade' => ['required', 'string', 'max:255'],
+            'estado' => ['required', 'string', 'max:32'],
         ];
     }
 }

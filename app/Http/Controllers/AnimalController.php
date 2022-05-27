@@ -15,7 +15,7 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        return view('animal.cadastro');
     }
 
     /**
@@ -25,7 +25,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        return view('animal.cadastro');
     }
 
     /**
