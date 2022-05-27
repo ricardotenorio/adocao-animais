@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('adocaos', function (Blueprint $table) {
+        Schema::create('adocoes', function (Blueprint $table) {
             $table->id();
             $table->string('status');
             $table->date('finalizada_em');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adocaos');
+        Schema::dropIfExists('adocoes');
     }
 };
