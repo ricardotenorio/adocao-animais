@@ -13,7 +13,7 @@ class StoreAnimalRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return auth()->check();
     }
 
     /**
@@ -25,7 +25,7 @@ class StoreAnimalRequest extends FormRequest
     {
         return [
             'nome' => ['required', 'string', 'max:255'],
-            'tipo' => ['required', 'string', 'max:255', 'in:gato, cachorro'],
+            'tipo' => ['required', 'string', 'max:255', 'in:gato,cachorro'],
             'descricao' => ['required', 'string', 'max:255'],
             'raca' => ['string', 'max:255'],
             'idade' => ['integer'],

@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Cadastrar') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('animal.cadastro') }}">
                         @csrf
 
                         <div class="row mb-3">
