@@ -67,7 +67,11 @@ class AnimalController extends Controller
      */
     public function edit(Animal $animal)
     {
-        //
+        if($animal->user_id != auth()->id()) {
+            abort(403);
+        }
+
+        return view('animais.edit', [ 'animal' => $animal ]);
     }
 
     /**
@@ -79,7 +83,11 @@ class AnimalController extends Controller
      */
     public function update(UpdateAnimalRequest $request, Animal $animal)
     {
-        //
+        $animalParaAtualizar = $request->validated();
+
+        $animal->update($animalParaAtualizar);
+
+        return redirect('/animais');
     }
 
     /**
@@ -90,6 +98,11 @@ class AnimalController extends Controller
      */
     public function destroy(Animal $animal)
     {
-        //
+        if($animal->user_id != auth()->id()) {
+            abort(403);
+        }
+        
+        $animal->delete();
+        return redirect('/')->with('message', 'Listing deleted successfully');
     }
 }
