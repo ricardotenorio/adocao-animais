@@ -9,10 +9,33 @@ class Animal extends Model
 {
     use HasFactory;
 
+    protected $table = 'animais';
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'nome',
+        'tipo',
+        'descricao',
+        'status',
+        'raca',
+        'idade',
+        'rua',
+        'numero',
+        'bairro',
+        'complemento',
+        'cidade',
+        'estado',
+        'user_id',
+    ];
     
 }

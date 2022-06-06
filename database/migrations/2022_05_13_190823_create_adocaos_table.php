@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('adocoes', function (Blueprint $table) {
+        Schema::create('adocaos', function (Blueprint $table) {
             $table->id();
             $table->string('status');
             $table->date('finalizada_em');
 
-            $table->bigInteger('user_id');
-            $table->bigInteger('animal_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('animal_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
             $table->index(['user_id', 'animal_id']);
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adocoes');
+        Schema::dropIfExists('adocaos');
     }
 };

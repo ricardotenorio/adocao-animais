@@ -9,6 +9,8 @@ class Adocao extends Model
 {
     use HasFactory;
 
+    protected $table = 'adocoes';
+
     public function user()
     {
         return $this->belongsTo(User::class);

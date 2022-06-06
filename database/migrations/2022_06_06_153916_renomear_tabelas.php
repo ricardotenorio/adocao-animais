@@ -13,16 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fotos', function (Blueprint $table) {
-            $table->id();
-            $table->string('url');
-            $table->string('descricao');
-
-            $table->foreignId('animal_id')->constrained();
-            $table->timestamps();
-
-            $table->index('animal_id');
-        });
+        Schema::rename('animals', 'animais');
+        Schema::rename('adocaos', 'adocoes');
     }
 
     /**
@@ -32,6 +24,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fotos');
+        //
     }
 };

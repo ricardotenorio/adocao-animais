@@ -22,6 +22,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/animal', App\Http\Controllers\AnimalController::class)->names([
-    'store' => 'animal.cadastro'
-])->middleware('auth');
+Route::resource('/animais', App\Http\Controllers\AnimalController::class)->middleware('auth');

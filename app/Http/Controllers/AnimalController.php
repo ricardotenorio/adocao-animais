@@ -15,7 +15,7 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        return view('animal.cadastro');
+        return view('animais.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        return view('animal.cadastro');
+        return view('animais.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class AnimalController extends Controller
      */
     public function store(StoreAnimalRequest $request)
     {
-        //
+        $animal = $request->validated();
+
+        $animal['user_id'] = auth()->id();
+        $animal['status'] = 'adoção';
+
+        Animal::create($animal);
+
+        return redirect('/animais');
     }
 
     /**
