@@ -15,7 +15,9 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        return view('animais.index');
+        return view('animais.index', 
+                ['animais' => Animal::latest()->paginate(10)]
+            );
     }
 
     /**
@@ -54,7 +56,7 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-        //
+        return view('animais.show', [ 'animal' => $animal ]);
     }
 
     /**
