@@ -103,6 +103,6 @@ class AnimalController extends Controller
         }
         
         $animal->delete();
-        return redirect('/') //->with('message', 'Listing deleted successfully');
+        return redirect('/');
     }
 }
