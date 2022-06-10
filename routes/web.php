@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdocaoController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\MockObject\Rule\Parameters;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +39,10 @@ Route::resource('/animais', App\Http\Controllers\AnimalController::class,
         ]
     ]
 )->only('index', 'show');
+
+Route::resource('/adocoes', AdocaoController::class,
+    [
+        'parameters' => [
+            'adocoes' => 'adocao'
+        ] 
+    ])->middleware('auth')->only('index', 'store', 'update');

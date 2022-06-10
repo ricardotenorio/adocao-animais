@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('adocaos', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->date('finalizada_em');
+            $table->date('finalizada_em')->nullable();
 
             $table->foreignId('user_id')->constrained();
             $table->foreignId('animal_id')->constrained()->onDelete('cascade');

@@ -15,4 +15,16 @@ class Adocao extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'status',
+        'finalizada_em',
+        'user_id',
+        'animal_id',
+    ];
 }
