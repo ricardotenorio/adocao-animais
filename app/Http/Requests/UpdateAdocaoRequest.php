@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Adocao;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateAdocaoRequest extends FormRequest
@@ -13,7 +14,9 @@ class UpdateAdocaoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $adocao = Adocao::find($this->route('adocao'));
+        
+        return auth()->user()->id == $adocao->user_id;
     }
 
     /**
@@ -24,7 +27,8 @@ class UpdateAdocaoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'animal_id' => ['required', 'integer'],
+            'status' => ['required', 'string', 'in:em andamento, cancelada, concluida'],
         ];
     }
 }

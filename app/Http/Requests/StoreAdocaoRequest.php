@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Animal;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAdocaoRequest extends FormRequest
@@ -13,7 +14,7 @@ class StoreAdocaoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +25,7 @@ class StoreAdocaoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'animal_id' => ['required', 'integer'],
         ];
     }
 }
