@@ -16,10 +16,10 @@
         <ul class="navbar-nav h4">
             
             <li class="nav-item px-5">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" href="/animais">Inicio</a>
             </li>
             <li class="nav-item px-5">
-                <a class="nav-link" href="#">Cadastrar Animal</a>
+                <a class="nav-link" href="/animais/create">Cadastrar Animal</a>
             </li>
             <li class="nav-item px-5">
                 <a class="nav-link" href="#">Listas</a>
