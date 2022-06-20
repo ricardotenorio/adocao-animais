@@ -5,6 +5,7 @@
     @foreach ($animais as $animal)
         
         <a href="/animais/{{ $animal->id }}">
+        <h2>Id: {{ $animal->id }}</h2>
         <h2>Nome: {{ $animal->nome }}</h2>
         <h3>cidade: {{ $animal->cidade }}</h3>
         <h3>estado: {{ $animal->estado }}</h3>

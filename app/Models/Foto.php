@@ -13,4 +13,15 @@ class Foto extends Model
     {
         return $this->belongsTo(Animal::class);
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'url',
+        'descricao',
+        'animal_id',
+    ];
 }

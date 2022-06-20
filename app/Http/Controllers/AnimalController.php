@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\Foto;
 use App\Http\Requests\StoreAnimalRequest;
 use App\Http\Requests\UpdateAnimalRequest;
 
@@ -16,7 +17,7 @@ class AnimalController extends Controller
     public function index()
     {
         return view('animais.index', 
-                ['animais' => Animal::latest()->paginate(10)]
+                ['animais' => Animal::with('foto')->latest()->paginate(10)]
             );
     }
 
@@ -40,10 +41,19 @@ class AnimalController extends Controller
     {
         $animal = $request->validated();
 
+        if($request->hasFile('foto')) {
+            $foto['url'] = $request->file('foto')->store('fotos', 'public');
+        }
+
         $animal['user_id'] = auth()->id();
         $animal['status'] = 'adoção';
 
-        Animal::create($animal);
+        $savedAnimal = Animal::create($animal);
+        
+        if($foto) {
+            $foto['animal_id'] = $savedAnimal->id;
+            Foto::create($foto);
+        }
 
         return redirect('/animais');
     }
@@ -85,7 +95,16 @@ class AnimalController extends Controller
     {
         $animalParaAtualizar = $request->validated();
 
+        if($request->hasFile('foto')) {
+            $foto['url'] = $request->file('foto')->store('fotos', 'public');
+        }
+
         $animal->update($animalParaAtualizar);
+
+        if($foto) {
+            $foto['animal_id'] = $animal->id;
+            Foto::create($foto);
+        }
 
         return redirect('/animais');
     }

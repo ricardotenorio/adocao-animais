@@ -16,6 +16,11 @@ class Animal extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function foto()
+    {
+        return $this->hasOne(Foto::class);
+    }
+
     
     /**
      * The attributes that are mass assignable.

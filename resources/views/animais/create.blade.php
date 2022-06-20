@@ -8,7 +8,7 @@
         <div class="card-header">{{ __('Cadastrar') }}</div>
 
         <div class="card-body">
-          <form method="POST" action="/animais">
+          <form method="POST" action="/animais" enctype="multipart/form-data">
             @csrf
 
             <div class="row mb-3">
@@ -30,8 +30,17 @@
               <label for="tipo" class="col-md-4 col-form-label text-md-end">tipo</label>
 
               <div class="col-md-6">
-                <input id="tipo" type="text" class="form-control @error('tipo') is-invalid @enderror" name="tipo"
-                  value="{{ old('tipo') }}" required autocomplete="tipo">
+                <input id="tipo-gato" type="radio" class="form-check-input @error('tipo') is-invalid @enderror" name="tipo"
+                  value="gato" required checked>
+                <label class="form-check-label" for="tipo-gato">
+                  Gato
+                </label>
+                
+                <input id="tipo-cachorro" type="radio" class="form-check-input @error('tipo') is-invalid @enderror" name="tipo"
+                  value="cachorro" required>
+                <label class="form-check-label" for="tipo-cachorro">
+                  Cachorro
+                </label>
 
                 @error('tipo')
                 <span class="invalid-feedback" role="alert">
@@ -76,7 +85,7 @@
 
               <div class="col-md-6">
                 <input id="idade" type="number" class="form-control @error('idade') is-invalid @enderror" name="idade"
-                  value="{{ old('idade') }}" autocomplete="idade">
+                  value="{{ old('idade') }}" min="0" autocomplete="idade">
 
                 @error('idade')
                 <span class="invalid-feedback" role="alert">
@@ -175,6 +184,20 @@
                 @enderror
               </div>
             </div>
+
+            <div class="mb-6">
+              <label for="foto" class="col-md-4 col-form-label text-md-end">
+                Foto
+              </label>
+              <input type="file" class="" name="foto" />
+      
+              @error('foto')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+      
 
             <div class="row mb-0">
               <div class="col-md-6 offset-md-4">
