@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\AnimalController::class, 'index']);
 
 Route::resource('/animais', App\Http\Controllers\AnimalController::class, 
         [
