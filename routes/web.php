@@ -49,3 +49,5 @@ Route::resource('/adocoes', AdocaoController::class,
             'adocoes' => 'adocao'
         ] 
     ])->middleware('auth')->only('index', 'store', 'update');
+
+Route::get('/animais-cadastrados', [App\Http\Controllers\AnimalController::class, 'animaisCadastrados']);

@@ -137,4 +137,12 @@ class AnimalController extends Controller
         $animal->delete();
         return redirect('/');
     }
+
+    public function animaisCadastrados() {
+        $animais = Animal::latest()->where('user_id', auth()->id())->get();
+
+        return view('animais.cadastrados', 
+                ['animais' => $animais]
+            );
+    }
 }
