@@ -17,6 +17,7 @@ class AnimalController extends Controller
     public function index()
     {
         $animais = Animal::latest()->where('user_id', '!=', auth()->id())
+                                    ->where('status', 'adoção')
                                     ->filtrarTipo(request('tipo'))
                                     ->filtrarEndereco(request('filtro'))
                                     ->with('foto')

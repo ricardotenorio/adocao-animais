@@ -25,6 +25,12 @@
                 <a class="nav-link" href="/adocoes">Lista de Adoção</a>
             </li>
 
+            @if(auth()->check())
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="/perfil/{{ auth()->id() }}">Perfil</a>
+                </li>
+            @endif
+
         </ul>
     </div>
 </nav>
