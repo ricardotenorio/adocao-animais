@@ -15,7 +15,7 @@ class AdocaoController extends Controller
      */
     public function index()
     {
-        $adocoes = Adocao::where('user_id', auth()->id())->get();
+        $adocoes = Adocao::where('user_id', auth()->id())->latest()->get();
 
         return view('adocoes.index',
             [

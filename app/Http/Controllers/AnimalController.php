@@ -16,8 +16,14 @@ class AnimalController extends Controller
      */
     public function index()
     {
+        $animais = Animal::latest()->where('user_id', '!=', auth()->id())
+                                    ->filtrarTipo(request('tipo'))
+                                    ->filtrarEndereco(request('filtro'))
+                                    ->with('foto')
+                                    ->get();
+
         return view('animais.index', 
-                ['animais' => Animal::latest()->where('user_id', '!=', auth()->id())->with('foto')->get()]
+                ['animais' => $animais]
             );
     }
 
@@ -96,6 +102,8 @@ class AnimalController extends Controller
     public function update(UpdateAnimalRequest $request, Animal $animal)
     {
         $animalParaAtualizar = $request->validated();
+
+        $animalParaAtualizar['user_id'] = auth()->id();
 
         $foto = [];
 

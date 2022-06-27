@@ -41,6 +41,19 @@ class Animal extends Model
         return $enderecoString;
     }
 
+    public function scopeFiltrarTipo($query, $tipo) {
+        if($tipo) {
+            $query->where('tipo', '=', $tipo);
+        }        
+    }
+
+    public function scopeFiltrarEndereco($query, $endereco)
+    {
+        if($endereco) {
+            $query->where('cidade', 'like', '%' . $endereco . '%')
+                ->orWhere('estado', 'like', '%' . $endereco . '%');
+        }
+    }
     
     /**
      * The attributes that are mass assignable.
