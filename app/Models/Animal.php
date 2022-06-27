@@ -21,6 +21,11 @@ class Animal extends Model
         return $this->hasOne(Foto::class);
     }
 
+    public function adocoes()
+    {
+        return $this->hasMany(Adocao::class);
+    }
+
     public function endereco()
     {
         $endereco['rua'] = $this->rua;

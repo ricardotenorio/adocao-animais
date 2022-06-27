@@ -37,6 +37,7 @@
                     @endisset
                 </p>
 
+                @if ($animal->status == 'adoção' && $animal->user_id != auth()->id())
                 <div class="d-flex justify-content-end">
                     <form method="POST" action="/adocoes">
                         @csrf
@@ -44,10 +45,50 @@
                         <button class="btn btn-outline-danger btn-block" type="submit">Adotar</button>
                     </form>
                 </div>
-
+                @endif
 
             </div>
         </div>
+
+        @if ($adocoes && $animal->status == 'adoção')
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Nome</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($adocoes as $adocao)
+                <tr>
+                    <th>{{ explode(' ', $adocao->created_at)[0] }}</th>
+                    <td>
+                        <a href="/perfil/{{ $adocao->user->id }}" class="text-decoration-none">
+                            {{ $adocao->user->name }}
+                        </a>
+                    </td>
+                    <td>{{ $adocao->status }}</td>
+                    <td>
+                        @if($adocao->status != "cancelada")
+                        <form method="POST" action="/adocoes/{{ $adocao->id }}">
+                            @csrf
+                            @method("PUT")
+                            <input type="hidden" name="status" value="concluida">
+                            <input type="hidden" name="animal_id" value="{{ $adocao->animal_id }}">
+                            <button class="btn btn-danger" type="submit">Finalizar</button>
+                        </form>
+
+                        @else
+                        <button class="btn btn-secondary" disabled>Finalizar</a>
+                            @endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        @endif
 
     </div>
 </div>

@@ -6,6 +6,7 @@ use App\Models\Animal;
 use App\Models\Foto;
 use App\Http\Requests\StoreAnimalRequest;
 use App\Http\Requests\UpdateAnimalRequest;
+use App\Models\Adocao;
 
 class AnimalController extends Controller
 {
@@ -75,7 +76,13 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-        return view('animais.show', [ 'animal' => $animal ]);
+        $adocoes = [];
+
+        if (auth()->id() == $animal->user->id) {
+            $adocoes = Adocao::where('animal_id', $animal->id)->with('user')->get();
+        }
+
+        return view('animais.show', [ 'animal' => $animal, 'adocoes' => $adocoes ]);
     }
 
     /**

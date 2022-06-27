@@ -20,7 +20,7 @@
                 <tr>
                     <th>{{ explode(' ', $animal->created_at)[0] }}</th>
                     <td>
-                        <a href="/animais/{{ $animal->id }}">
+                        <a href="/animais/{{ $animal->id }}" class="text-decoration-none">
                             {{ $animal->nome }}
                         </a>
                     </td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Adocao;
 use App\Http\Requests\StoreAdocaoRequest;
 use App\Http\Requests\UpdateAdocaoRequest;
+use App\Models\Animal;
 
 class AdocaoController extends Controller
 {
@@ -53,7 +54,14 @@ class AdocaoController extends Controller
     {
         $adocaoParaAtualizar = $request->validated();
 
-        $adocao['user_id'] = auth()->id();
+        if ($adocaoParaAtualizar['status'] == 'concluida') {
+            $animal = Animal::where('id', $adocao->animal_id)->first();
+            $animal->status = 'adotado';
+
+            $animal->update();
+        }
+        
+        $adocaoParaAtualizar['finalizada_em'] = date('Y-m-d H:i:s');
 
         $adocao->update($adocaoParaAtualizar);
 

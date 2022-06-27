@@ -15,8 +15,8 @@ class UpdateAdocaoRequest extends FormRequest
     public function authorize()
     {
         $adocao = $this->route('adocao');
-        
-        return auth()->user()->id == $adocao->user_id;
+
+        return auth()->id() == $adocao->user_id || auth()->id() == $adocao->animal->user_id;
     }
 
     /**
