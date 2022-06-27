@@ -14,7 +14,7 @@ class UpdateAdocaoRequest extends FormRequest
      */
     public function authorize()
     {
-        $adocao = Adocao::find($this->route('adocao'));
+        $adocao = $this->route('adocao');
         
         return auth()->user()->id == $adocao->user_id;
     }
@@ -28,7 +28,7 @@ class UpdateAdocaoRequest extends FormRequest
     {
         return [
             'animal_id' => ['required', 'integer'],
-            'status' => ['required', 'string', 'in:em andamento, cancelada, concluida'],
+            'status' => ['required', 'string', 'in:em andamento,cancelada,concluida']
         ];
     }
 }

@@ -21,6 +21,26 @@ class Animal extends Model
         return $this->hasOne(Foto::class);
     }
 
+    public function endereco()
+    {
+        $endereco['rua'] = $this->rua;
+        $endereco['numero'] = $this->numero;
+        $endereco['bairro'] = $this->bairro;
+        $endereco['complemento'] = $this->complemento;
+
+        $enderecoString = "";
+
+        foreach ($endereco as $key => $value) {
+            if (isset($value)) {
+                $enderecoString .= $key . ": " . $value . " ";
+            } else {
+                $enderecoString .= $key . ": N/A ";
+            }
+        }
+        
+        return $enderecoString;
+    }
+
     
     /**
      * The attributes that are mass assignable.

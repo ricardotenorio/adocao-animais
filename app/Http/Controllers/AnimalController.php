@@ -17,7 +17,7 @@ class AnimalController extends Controller
     public function index()
     {
         return view('animais.index', 
-                ['animais' => Animal::with('foto')->latest()->paginate(10)]
+                ['animais' => Animal::latest()->where('user_id', '!=', auth()->id())->with('foto')->get()]
             );
     }
 
@@ -40,6 +40,8 @@ class AnimalController extends Controller
     public function store(StoreAnimalRequest $request)
     {
         $animal = $request->validated();
+
+        $foto = [];
 
         if($request->hasFile('foto')) {
             $foto['url'] = $request->file('foto')->store('fotos', 'public');
@@ -94,6 +96,8 @@ class AnimalController extends Controller
     public function update(UpdateAnimalRequest $request, Animal $animal)
     {
         $animalParaAtualizar = $request->validated();
+
+        $foto = [];
 
         if($request->hasFile('foto')) {
             $foto['url'] = $request->file('foto')->store('fotos', 'public');

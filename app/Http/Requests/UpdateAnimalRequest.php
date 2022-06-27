@@ -14,7 +14,7 @@ class UpdateAnimalRequest extends FormRequest
      */
     public function authorize()
     {
-        $animal = Animal::find($this->route('animal'));
+        $animal = $this->route('animal');
         
         return auth()->user()->id == $animal->user_id;
     }

@@ -15,8 +15,12 @@ class AdocaoController extends Controller
      */
     public function index()
     {
+        $adocoes = Adocao::where('user_id', auth()->id())->get();
+
         return view('adocoes.index',
-            ['adocoes' => Adocao::latest()->paginate(10)]
+            [
+                'adocoes' => $adocoes
+            ]
         );
     }
 
@@ -48,6 +52,8 @@ class AdocaoController extends Controller
     public function update(UpdateAdocaoRequest $request, Adocao $adocao)
     {
         $adocaoParaAtualizar = $request->validated();
+
+        $adocao['user_id'] = auth()->id();
 
         $adocao->update($adocaoParaAtualizar);
 

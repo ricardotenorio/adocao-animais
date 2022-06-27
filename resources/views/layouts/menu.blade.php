@@ -15,14 +15,14 @@
     <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNavDropdown">
         <ul class="navbar-nav h4">
             
-            <li class="nav-item px-5">
+            <li class="nav-item px-3">
                 <a class="nav-link" href="/animais">Inicio</a>
             </li>
-            <li class="nav-item px-5">
+            <li class="nav-item px-3">
                 <a class="nav-link" href="/animais/create">Cadastrar Animal</a>
             </li>
-            <li class="nav-item px-5">
-                <a class="nav-link" href="#">Listas</a>
+            <li class="nav-item px-3">
+                <a class="nav-link" href="/adocoes">Lista de Adoção</a>
             </li>
 
         </ul>
