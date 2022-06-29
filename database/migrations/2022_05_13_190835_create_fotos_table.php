@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('url');
             $table->string('descricao')->nullable();
 
-            $table->foreignId('animal_id')->constrained();
+            $table->foreignId('animal_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
             $table->index('animal_id');
